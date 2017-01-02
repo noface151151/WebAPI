@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{601781F1-4C85-4797-8D61-0A123C1B61F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MODEL</RootNamespace>
+    <AssemblyName>MODEL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CTDonHang.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\DonHangDAL.cs" />
+    <Compile Include="DAL\KhachHangDAL.cs" />
+    <Compile Include="DAL\SanPhamDAL.cs" />
+    <Compile Include="DAL\SanPhamDeNghiDAL.cs" />
+    <Compile Include="DAL\SubTheLoaiDAL.cs" />
+    <Compile Include="DAL\TheLoaiDAL.cs" />
+    <Compile Include="DAL\TimeBaseDAL.cs" />
+    <Compile Include="DonHang.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\DonHangDTO.cs" />
+    <Compile Include="DTO\CTDonHangDTO.cs" />
+    <Compile Include="DTO\GioHangClient.cs" />
+    <Compile Include="DTO\KhachHangDTO.cs" />
+    <Compile Include="DTO\SanPhamDeNghiDTO.cs" />
+    <Compile Include="DTO\SanPhamDTO.cs" />
+    <Compile Include="DTO\SanPhamSubTheLoaiDTO.cs" />
+    <Compile Include="DTO\SanPhamTheLoaiDTO.cs" />
+    <Compile Include="DTO\SanPham_TimeBaseDTO.cs" />
+    <Compile Include="DTO\SubTheLoaiDTO.cs" />
+    <Compile Include="DTO\TheLoaiDTO.cs" />
+    <Compile Include="DTO\TimeBaseDTO.cs" />
+    <Compile Include="KhachHang.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAPI.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAPI.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAPI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAPI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAPI.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SanPham.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SanPhamDeNghi.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SanPhamSubTheLoai.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SanPhamTheLoai.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SanPham_Timebase.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubTheLoai.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TheLoai.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeBase.cs">
+      <DependentUpon>ModelAPI.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="ModelAPI.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelAPI.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelAPI.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelAPI.edmx</DependentUpon>
+      <LastGenOutput>ModelAPI.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ModelAPI.edmx.diagram">
+      <DependentUpon>ModelAPI.edmx</DependentUpon>
+    </None>
+    <None Include="ModelAPI.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelAPI.edmx</DependentUpon>
+      <LastGenOutput>ModelAPI.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

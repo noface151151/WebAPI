@@ -1,0 +1,8 @@
+E:\visual 2013\ShopAPI\MODEL\bin\Debug\MODEL.dll.config
+E:\visual 2013\ShopAPI\MODEL\bin\Debug\MODEL.dll
+E:\visual 2013\ShopAPI\MODEL\bin\Debug\MODEL.pdb
+E:\visual 2013\ShopAPI\MODEL\bin\Debug\EntityFramework.dll
+E:\visual 2013\ShopAPI\MODEL\bin\Debug\EntityFramework.xml
+E:\visual 2013\ShopAPI\MODEL\obj\Debug\MODEL.dll
+E:\visual 2013\ShopAPI\MODEL\obj\Debug\MODEL.pdb
+E:\visual 2013\ShopAPI\MODEL\obj\Debug\MODEL.csprojResolveAssemblyReference.cache

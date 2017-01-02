@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce41e546114147139d0e83ee99424073" Name="Diagram1">
+        <EntityTypeShape EntityType="WebServiceShopModel.SanPham" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebServiceShopModel.SanPhamSubTheLoai" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebServiceShopModel.SanPhamTheLoai" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebServiceShopModel.SubTheLoai" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebServiceShopModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebServiceShopModel.TheLoai" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SubTheLoai_TheLoai" ManuallyRouted="false" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPhamSubTheLoai_SanPham" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPhamTheLoai_SanPham" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPhamSubTheLoai_SubTheLoai" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPhamTheLoai_TheLoai" />
+        <EntityTypeShape EntityType="WebServiceShopModel.CTDonHang" Width="1.5" PointX="8.25" PointY="5.25" />
+        <EntityTypeShape EntityType="WebServiceShopModel.DonHang" Width="1.5" PointX="5.625" PointY="7" />
+        <EntityTypeShape EntityType="WebServiceShopModel.KhachHang" Width="1.5" PointX="3.375" PointY="7.625" />
+        <AssociationConnector Association="WebServiceShopModel.FK_CTDonHang_DonHang" />
+        <AssociationConnector Association="WebServiceShopModel.FK_CTDonHang_SanPham" />
+        <AssociationConnector Association="WebServiceShopModel.FK_DonHang_KhachHang" />
+        <EntityTypeShape EntityType="WebServiceShopModel.SanPhamDeNghi" Width="1.5" PointX="3" PointY="10.75" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPhamDeNghi_SanPham" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPhamDeNghi_SanPham1" />
+        <EntityTypeShape EntityType="WebServiceShopModel.SanPham_Timebase" Width="1.5" PointX="6" PointY="10.875" />
+        <EntityTypeShape EntityType="WebServiceShopModel.TimeBase" Width="1.5" PointX="3.75" PointY="13.625" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPham_Timebase_SanPham" />
+        <AssociationConnector Association="WebServiceShopModel.FK_SanPham_Timebase_TimeBase" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

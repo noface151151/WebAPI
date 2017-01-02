@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebServiceShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenSanPham" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LuotXem" Type="Int32" />
+    <Property Name="LuotMua" Type="Int32" />
+    <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <NavigationProperty Name="SanPhamSubTheLoais" Relationship="WebServiceShopModel.FK_SanPhamSubTheLoai_SanPham" FromRole="SanPham" ToRole="SanPhamSubTheLoai" />
+    <NavigationProperty Name="SanPhamTheLoais" Relationship="WebServiceShopModel.FK_SanPhamTheLoai_SanPham" FromRole="SanPham" ToRole="SanPhamTheLoai" />
+    <NavigationProperty Name="CTDonHangs" Relationship="WebServiceShopModel.FK_CTDonHang_SanPham" FromRole="SanPham" ToRole="CTDonHang" />
+    <NavigationProperty Name="SanPhamDeNghis" Relationship="WebServiceShopModel.FK_SanPhamDeNghi_SanPham" FromRole="SanPham" ToRole="SanPhamDeNghi" />
+    <NavigationProperty Name="SanPhamDeNghis1" Relationship="WebServiceShopModel.FK_SanPhamDeNghi_SanPham1" FromRole="SanPham" ToRole="SanPhamDeNghi" />
+    <NavigationProperty Name="SanPham_Timebase" Relationship="WebServiceShopModel.FK_SanPham_Timebase_SanPham" FromRole="SanPham" ToRole="SanPham_Timebase" />
+  </EntityType>
+  <EntityType Name="SanPhamSubTheLoai">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_SubTheLoai" />
+    </Key>
+    <Property Name="Id_SanPham" Type="Int32" Nullable="false" />
+    <Property Name="Id_SubTheLoai" Type="Int32" Nullable="false" />
+    <Property Name="temp" Type="Int32" />
+    <NavigationProperty Name="SanPham" Relationship="WebServiceShopModel.FK_SanPhamSubTheLoai_SanPham" FromRole="SanPhamSubTheLoai" ToRole="SanPham" />
+    <NavigationProperty Name="SubTheLoai" Relationship="WebServiceShopModel.FK_SanPhamSubTheLoai_SubTheLoai" FromRole="SanPhamSubTheLoai" ToRole="SubTheLoai" />
+  </EntityType>
+  <EntityType Name="SanPhamTheLoai">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_TheLoai" />
+    </Key>
+    <Property Name="Id_SanPham" Type="Int32" Nullable="false" />
+    <Property Name="Id_TheLoai" Type="Int32" Nullable="false" />
+    <Property Name="temp" Type="Int32" />
+    <NavigationProperty Name="SanPham" Relationship="WebServiceShopModel.FK_SanPhamTheLoai_SanPham" FromRole="SanPhamTheLoai" ToRole="SanPham" />
+    <NavigationProperty Name="TheLoai" Relationship="WebServiceShopModel.FK_SanPhamTheLoai_TheLoai" FromRole="SanPhamTheLoai" ToRole="TheLoai" />
+  </EntityType>
+  <EntityType Name="SubTheLoai">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTheLoaiSub" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_TheLoai" Type="Int32" />
+    <NavigationProperty Name="TheLoai" Relationship="Self.FK_SubTheLoai_TheLoai" FromRole="SubTheLoai" ToRole="TheLoai" />
+    <NavigationProperty Name="SanPhamSubTheLoais" Relationship="WebServiceShopModel.FK_SanPhamSubTheLoai_SubTheLoai" FromRole="SubTheLoai" ToRole="SanPhamSubTheLoai" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTheLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SubTheLoais" Relationship="Self.FK_SubTheLoai_TheLoai" FromRole="TheLoai" ToRole="SubTheLoai" />
+    <NavigationProperty Name="SanPhamTheLoais" Relationship="WebServiceShopModel.FK_SanPhamTheLoai_TheLoai" FromRole="TheLoai" ToRole="SanPhamTheLoai" />
+  </EntityType>
+  <Association Name="FK_SubTheLoai_TheLoai">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+    <End Role="SubTheLoai" Type="Self.SubTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubTheLoai">
+        <PropertyRef Name="Id_TheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="APIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <EntitySet Name="SanPhamSubTheLoais" EntityType="Self.SanPhamSubTheLoai" />
+    <EntitySet Name="SanPhamTheLoais" EntityType="Self.SanPhamTheLoai" />
+    <EntitySet Name="SubTheLoais" EntityType="Self.SubTheLoai" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+    <AssociationSet Name="FK_SubTheLoai_TheLoai" Association="Self.FK_SubTheLoai_TheLoai">
+      <End Role="TheLoai" EntitySet="TheLoais" />
+      <End Role="SubTheLoai" EntitySet="SubTheLoais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamSubTheLoai_SanPham" Association="WebServiceShopModel.FK_SanPhamSubTheLoai_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="SanPhamSubTheLoai" EntitySet="SanPhamSubTheLoais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamTheLoai_SanPham" Association="WebServiceShopModel.FK_SanPhamTheLoai_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="SanPhamTheLoai" EntitySet="SanPhamTheLoais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamSubTheLoai_SubTheLoai" Association="WebServiceShopModel.FK_SanPhamSubTheLoai_SubTheLoai">
+      <End Role="SubTheLoai" EntitySet="SubTheLoais" />
+      <End Role="SanPhamSubTheLoai" EntitySet="SanPhamSubTheLoais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamTheLoai_TheLoai" Association="WebServiceShopModel.FK_SanPhamTheLoai_TheLoai">
+      <End Role="TheLoai" EntitySet="TheLoais" />
+      <End Role="SanPhamTheLoai" EntitySet="SanPhamTheLoais" />
+    </AssociationSet>
+    <EntitySet Name="CTDonHangs" EntityType="WebServiceShopModel.CTDonHang" />
+    <EntitySet Name="DonHangs" EntityType="WebServiceShopModel.DonHang" />
+    <EntitySet Name="KhachHangs" EntityType="WebServiceShopModel.KhachHang" />
+    <AssociationSet Name="FK_CTDonHang_DonHang" Association="WebServiceShopModel.FK_CTDonHang_DonHang">
+      <End Role="DonHang" EntitySet="DonHangs" />
+      <End Role="CTDonHang" EntitySet="CTDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDonHang_SanPham" Association="WebServiceShopModel.FK_CTDonHang_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="CTDonHang" EntitySet="CTDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonHang_KhachHang" Association="WebServiceShopModel.FK_DonHang_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <EntitySet Name="SanPhamDeNghis" EntityType="WebServiceShopModel.SanPhamDeNghi" />
+    <AssociationSet Name="FK_SanPhamDeNghi_SanPham" Association="WebServiceShopModel.FK_SanPhamDeNghi_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="SanPhamDeNghi" EntitySet="SanPhamDeNghis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamDeNghi_SanPham1" Association="WebServiceShopModel.FK_SanPhamDeNghi_SanPham1">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="SanPhamDeNghi" EntitySet="SanPhamDeNghis" />
+    </AssociationSet>
+    <EntitySet Name="SanPham_Timebase" EntityType="WebServiceShopModel.SanPham_Timebase" />
+    <EntitySet Name="TimeBases" EntityType="WebServiceShopModel.TimeBase" />
+    <AssociationSet Name="FK_SanPham_Timebase_SanPham" Association="WebServiceShopModel.FK_SanPham_Timebase_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="SanPham_Timebase" EntitySet="SanPham_Timebase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_Timebase_TimeBase" Association="WebServiceShopModel.FK_SanPham_Timebase_TimeBase">
+      <End Role="TimeBase" EntitySet="TimeBases" />
+      <End Role="SanPham_Timebase" EntitySet="SanPham_Timebase" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_SanPhamSubTheLoai_SanPham">
+    <End Type="WebServiceShopModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPhamSubTheLoai" Role="SanPhamSubTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamSubTheLoai">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamTheLoai_SanPham">
+    <End Type="WebServiceShopModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPhamTheLoai" Role="SanPhamTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamTheLoai">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamSubTheLoai_SubTheLoai">
+    <End Type="WebServiceShopModel.SubTheLoai" Role="SubTheLoai" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPhamSubTheLoai" Role="SanPhamSubTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubTheLoai">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamSubTheLoai">
+        <PropertyRef Name="Id_SubTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamTheLoai_TheLoai">
+    <End Type="WebServiceShopModel.TheLoai" Role="TheLoai" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPhamTheLoai" Role="SanPhamTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamTheLoai">
+        <PropertyRef Name="Id_TheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CTDonHang">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_DonHang" />
+    </Key>
+    <Property Name="Id_SanPham" Type="Int32" Nullable="false" />
+    <Property Name="Id_DonHang" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <NavigationProperty Name="DonHang" Relationship="WebServiceShopModel.FK_CTDonHang_DonHang" FromRole="CTDonHang" ToRole="DonHang" />
+    <NavigationProperty Name="SanPham" Relationship="WebServiceShopModel.FK_CTDonHang_SanPham" FromRole="CTDonHang" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NguoiNhan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiGiao" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayGiao" Type="DateTime" Precision="3" />
+    <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_KhachHang" Type="Int32" />
+    <NavigationProperty Name="CTDonHangs" Relationship="WebServiceShopModel.FK_CTDonHang_DonHang" FromRole="DonHang" ToRole="CTDonHang" />
+    <NavigationProperty Name="KhachHang" Relationship="WebServiceShopModel.FK_DonHang_KhachHang" FromRole="DonHang" ToRole="KhachHang" />
+    <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DonHangs" Relationship="WebServiceShopModel.FK_DonHang_KhachHang" FromRole="KhachHang" ToRole="DonHang" />
+  </EntityType>
+  <Association Name="FK_CTDonHang_DonHang">
+    <End Type="WebServiceShopModel.DonHang" Role="DonHang" Multiplicity="1" />
+    <End Type="WebServiceShopModel.CTDonHang" Role="CTDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CTDonHang">
+        <PropertyRef Name="Id_DonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDonHang_SanPham">
+    <End Type="WebServiceShopModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebServiceShopModel.CTDonHang" Role="CTDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CTDonHang">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonHang_KhachHang">
+    <End Type="WebServiceShopModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+    <End Type="WebServiceShopModel.DonHang" Role="DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="Id_KhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SanPhamDeNghi">
+    <Key>
+      <PropertyRef Name="IdSanPham" />
+      <PropertyRef Name="IdSanPhamDN" />
+    </Key>
+    <Property Name="IdSanPham" Type="Int32" Nullable="false" />
+    <Property Name="IdSanPhamDN" Type="Int32" Nullable="false" />
+    <Property Name="temp" Type="Int32" />
+    <NavigationProperty Name="SanPham" Relationship="WebServiceShopModel.FK_SanPhamDeNghi_SanPham" FromRole="SanPhamDeNghi" ToRole="SanPham" />
+    <NavigationProperty Name="SanPham1" Relationship="WebServiceShopModel.FK_SanPhamDeNghi_SanPham1" FromRole="SanPhamDeNghi" ToRole="SanPham" />
+  </EntityType>
+  <Association Name="FK_SanPhamDeNghi_SanPham">
+    <End Type="WebServiceShopModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPhamDeNghi" Role="SanPhamDeNghi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamDeNghi">
+        <PropertyRef Name="IdSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamDeNghi_SanPham1">
+    <End Type="WebServiceShopModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPhamDeNghi" Role="SanPhamDeNghi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamDeNghi">
+        <PropertyRef Name="IdSanPhamDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SanPham_Timebase">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_TimeBase" />
+    </Key>
+    <Property Name="Id_SanPham" Type="Int32" Nullable="false" />
+    <Property Name="Id_TimeBase" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SanPham" Relationship="WebServiceShopModel.FK_SanPham_Timebase_SanPham" FromRole="SanPham_Timebase" ToRole="SanPham" />
+    <NavigationProperty Name="TimeBase" Relationship="WebServiceShopModel.FK_SanPham_Timebase_TimeBase" FromRole="SanPham_Timebase" ToRole="TimeBase" />
+    <Property Name="temp" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TimeBase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ThoiGianTu" Type="DateTime" Precision="3" />
+    <Property Name="ThoiGianDen" Type="DateTime" Precision="3" />
+    <Property Name="ThuTrongTuan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GioTu" Type="Time" Precision="0" />
+    <Property Name="GioDen" Type="Time" Precision="0" />
+    <NavigationProperty Name="SanPham_Timebase" Relationship="WebServiceShopModel.FK_SanPham_Timebase_TimeBase" FromRole="TimeBase" ToRole="SanPham_Timebase" />
+    <Property Name="Show" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_SanPham_Timebase_SanPham">
+    <End Type="WebServiceShopModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPham_Timebase" Role="SanPham_Timebase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPham_Timebase">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_Timebase_TimeBase">
+    <End Type="WebServiceShopModel.TimeBase" Role="TimeBase" Multiplicity="1" />
+    <End Type="WebServiceShopModel.SanPham_Timebase" Role="SanPham_Timebase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPham_Timebase">
+        <PropertyRef Name="Id_TimeBase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

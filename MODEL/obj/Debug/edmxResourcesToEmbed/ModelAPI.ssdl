@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebServiceShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CTDonHang">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_DonHang" />
+    </Key>
+    <Property Name="Id_SanPham" Type="int" Nullable="false" />
+    <Property Name="Id_DonHang" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NguoiNhan" Type="nvarchar" MaxLength="250" />
+    <Property Name="DiaChiGiao" Type="nvarchar" MaxLength="250" />
+    <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgayGiao" Type="datetime" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_KhachHang" Type="int" />
+    <Property Name="TongTien" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PassWord" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSanPham" Type="nvarchar" MaxLength="250" />
+    <Property Name="Gia" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="LuotXem" Type="int" />
+    <Property Name="LuotMua" Type="int" />
+    <Property Name="HinhAnh" Type="nvarchar" MaxLength="50" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <EntityType Name="SanPham_Timebase">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_TimeBase" />
+    </Key>
+    <Property Name="Id_SanPham" Type="int" Nullable="false" />
+    <Property Name="Id_TimeBase" Type="int" Nullable="false" />
+    <Property Name="temp" Type="int" />
+  </EntityType>
+  <EntityType Name="SanPhamDeNghi">
+    <Key>
+      <PropertyRef Name="IdSanPham" />
+      <PropertyRef Name="IdSanPhamDN" />
+    </Key>
+    <Property Name="IdSanPham" Type="int" Nullable="false" />
+    <Property Name="IdSanPhamDN" Type="int" Nullable="false" />
+    <Property Name="temp" Type="int" />
+  </EntityType>
+  <EntityType Name="SanPhamSubTheLoai">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_SubTheLoai" />
+    </Key>
+    <Property Name="Id_SanPham" Type="int" Nullable="false" />
+    <Property Name="Id_SubTheLoai" Type="int" Nullable="false" />
+    <Property Name="temp" Type="int" />
+  </EntityType>
+  <EntityType Name="SanPhamTheLoai">
+    <Key>
+      <PropertyRef Name="Id_SanPham" />
+      <PropertyRef Name="Id_TheLoai" />
+    </Key>
+    <Property Name="Id_SanPham" Type="int" Nullable="false" />
+    <Property Name="Id_TheLoai" Type="int" Nullable="false" />
+    <Property Name="temp" Type="int" />
+  </EntityType>
+  <EntityType Name="SubTheLoai">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTheLoaiSub" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_TheLoai" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTheLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TimeBase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThoiGianTu" Type="datetime" />
+    <Property Name="ThoiGianDen" Type="datetime" />
+    <Property Name="ThuTrongTuan" Type="nvarchar" MaxLength="50" />
+    <Property Name="GioTu" Type="time" Precision="0" />
+    <Property Name="GioDen" Type="time" Precision="0" />
+    <Property Name="Show" Type="bit" />
+  </EntityType>
+  <Association Name="FK_CTDonHang_DonHang">
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
+    <End Role="CTDonHang" Type="Self.CTDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CTDonHang">
+        <PropertyRef Name="Id_DonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDonHang_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="CTDonHang" Type="Self.CTDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CTDonHang">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonHang_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="Id_KhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_Timebase_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="SanPham_Timebase" Type="Self.SanPham_Timebase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPham_Timebase">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_Timebase_TimeBase">
+    <End Role="TimeBase" Type="Self.TimeBase" Multiplicity="1" />
+    <End Role="SanPham_Timebase" Type="Self.SanPham_Timebase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPham_Timebase">
+        <PropertyRef Name="Id_TimeBase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamDeNghi_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="SanPhamDeNghi" Type="Self.SanPhamDeNghi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamDeNghi">
+        <PropertyRef Name="IdSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamDeNghi_SanPham1">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="SanPhamDeNghi" Type="Self.SanPhamDeNghi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamDeNghi">
+        <PropertyRef Name="IdSanPhamDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamSubTheLoai_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="SanPhamSubTheLoai" Type="Self.SanPhamSubTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamSubTheLoai">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamSubTheLoai_SubTheLoai">
+    <End Role="SubTheLoai" Type="Self.SubTheLoai" Multiplicity="1" />
+    <End Role="SanPhamSubTheLoai" Type="Self.SanPhamSubTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubTheLoai">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamSubTheLoai">
+        <PropertyRef Name="Id_SubTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamTheLoai_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="SanPhamTheLoai" Type="Self.SanPhamTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamTheLoai">
+        <PropertyRef Name="Id_SanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhamTheLoai_TheLoai">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="1" />
+    <End Role="SanPhamTheLoai" Type="Self.SanPhamTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SanPhamTheLoai">
+        <PropertyRef Name="Id_TheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubTheLoai_TheLoai">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+    <End Role="SubTheLoai" Type="Self.SubTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubTheLoai">
+        <PropertyRef Name="Id_TheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebServiceShopModelStoreContainer">
+    <EntitySet Name="CTDonHang" EntityType="Self.CTDonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham_Timebase" EntityType="Self.SanPham_Timebase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPhamDeNghi" EntityType="Self.SanPhamDeNghi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPhamSubTheLoai" EntityType="Self.SanPhamSubTheLoai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPhamTheLoai" EntityType="Self.SanPhamTheLoai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubTheLoai" EntityType="Self.SubTheLoai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimeBase" EntityType="Self.TimeBase" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CTDonHang_DonHang" Association="Self.FK_CTDonHang_DonHang">
+      <End Role="DonHang" EntitySet="DonHang" />
+      <End Role="CTDonHang" EntitySet="CTDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDonHang_SanPham" Association="Self.FK_CTDonHang_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="CTDonHang" EntitySet="CTDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonHang_KhachHang" Association="Self.FK_DonHang_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_Timebase_SanPham" Association="Self.FK_SanPham_Timebase_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="SanPham_Timebase" EntitySet="SanPham_Timebase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_Timebase_TimeBase" Association="Self.FK_SanPham_Timebase_TimeBase">
+      <End Role="TimeBase" EntitySet="TimeBase" />
+      <End Role="SanPham_Timebase" EntitySet="SanPham_Timebase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamDeNghi_SanPham" Association="Self.FK_SanPhamDeNghi_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="SanPhamDeNghi" EntitySet="SanPhamDeNghi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamDeNghi_SanPham1" Association="Self.FK_SanPhamDeNghi_SanPham1">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="SanPhamDeNghi" EntitySet="SanPhamDeNghi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamSubTheLoai_SanPham" Association="Self.FK_SanPhamSubTheLoai_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="SanPhamSubTheLoai" EntitySet="SanPhamSubTheLoai" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamSubTheLoai_SubTheLoai" Association="Self.FK_SanPhamSubTheLoai_SubTheLoai">
+      <End Role="SubTheLoai" EntitySet="SubTheLoai" />
+      <End Role="SanPhamSubTheLoai" EntitySet="SanPhamSubTheLoai" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamTheLoai_SanPham" Association="Self.FK_SanPhamTheLoai_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="SanPhamTheLoai" EntitySet="SanPhamTheLoai" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhamTheLoai_TheLoai" Association="Self.FK_SanPhamTheLoai_TheLoai">
+      <End Role="TheLoai" EntitySet="TheLoai" />
+      <End Role="SanPhamTheLoai" EntitySet="SanPhamTheLoai" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubTheLoai_TheLoai" Association="Self.FK_SubTheLoai_TheLoai">
+      <End Role="TheLoai" EntitySet="TheLoai" />
+      <End Role="SubTheLoai" EntitySet="SubTheLoai" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

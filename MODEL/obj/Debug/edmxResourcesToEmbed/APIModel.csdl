@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebServiceShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenSanPham" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LuotXem" Type="Int32" />
+    <Property Name="LuotMua" Type="Int32" />
+    <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <NavigationProperty Name="SubTheLoais" Relationship="Self.SanPham_SubTheLoai" FromRole="SanPham" ToRole="SubTheLoai" />
+    <NavigationProperty Name="TheLoais" Relationship="Self.SanPham_TheLoai" FromRole="SanPham" ToRole="TheLoai" />
+  </EntityType>
+  <EntityType Name="SubTheLoai">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTheLoaiSub" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_TheLoai" Type="Int32" />
+    <NavigationProperty Name="TheLoai" Relationship="Self.FK_SubTheLoai_TheLoai" FromRole="SubTheLoai" ToRole="TheLoai" />
+    <NavigationProperty Name="SanPhams" Relationship="Self.SanPham_SubTheLoai" FromRole="SubTheLoai" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTheLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SubTheLoais" Relationship="Self.FK_SubTheLoai_TheLoai" FromRole="TheLoai" ToRole="SubTheLoai" />
+    <NavigationProperty Name="SanPhams" Relationship="Self.SanPham_TheLoai" FromRole="TheLoai" ToRole="SanPham" />
+  </EntityType>
+  <Association Name="FK_SubTheLoai_TheLoai">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+    <End Role="SubTheLoai" Type="Self.SubTheLoai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubTheLoai">
+        <PropertyRef Name="Id_TheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SanPham_SubTheLoai">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <End Role="SubTheLoai" Type="Self.SubTheLoai" Multiplicity="*" />
+  </Association>
+  <Association Name="SanPham_TheLoai">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="WebServiceShopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <EntitySet Name="SubTheLoais" EntityType="Self.SubTheLoai" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+    <AssociationSet Name="FK_SubTheLoai_TheLoai" Association="Self.FK_SubTheLoai_TheLoai">
+      <End Role="TheLoai" EntitySet="TheLoais" />
+      <End Role="SubTheLoai" EntitySet="SubTheLoais" />
+    </AssociationSet>
+    <AssociationSet Name="SanPham_SubTheLoai" Association="Self.SanPham_SubTheLoai">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="SubTheLoai" EntitySet="SubTheLoais" />
+    </AssociationSet>
+    <AssociationSet Name="SanPham_TheLoai" Association="Self.SanPham_TheLoai">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="TheLoai" EntitySet="TheLoais" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

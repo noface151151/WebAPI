@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebServiceShopModelStoreContainer" CdmEntityContainer="APIEntities">
+    <EntitySetMapping Name="SanPhams">
+      <EntityTypeMapping TypeName="WebServiceShopModel.SanPham">
+        <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+          <ScalarProperty Name="LuotMua" ColumnName="LuotMua" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPhamSubTheLoais">
+      <EntityTypeMapping TypeName="WebServiceShopModel.SanPhamSubTheLoai">
+        <MappingFragment StoreEntitySet="SanPhamSubTheLoai">
+          <ScalarProperty Name="Id_SanPham" ColumnName="Id_SanPham" />
+          <ScalarProperty Name="Id_SubTheLoai" ColumnName="Id_SubTheLoai" />
+          <ScalarProperty Name="temp" ColumnName="temp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPhamTheLoais">
+      <EntityTypeMapping TypeName="WebServiceShopModel.SanPhamTheLoai">
+        <MappingFragment StoreEntitySet="SanPhamTheLoai">
+          <ScalarProperty Name="Id_SanPham" ColumnName="Id_SanPham" />
+          <ScalarProperty Name="Id_TheLoai" ColumnName="Id_TheLoai" />
+          <ScalarProperty Name="temp" ColumnName="temp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubTheLoais">
+      <EntityTypeMapping TypeName="WebServiceShopModel.SubTheLoai">
+        <MappingFragment StoreEntitySet="SubTheLoai">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenTheLoaiSub" ColumnName="TenTheLoaiSub" />
+          <ScalarProperty Name="Id_TheLoai" ColumnName="Id_TheLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="WebServiceShopModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TheLoais">
+      <EntityTypeMapping TypeName="WebServiceShopModel.TheLoai">
+        <MappingFragment StoreEntitySet="TheLoai">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenTheLoai" ColumnName="TenTheLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CTDonHangs">
+      <EntityTypeMapping TypeName="WebServiceShopModel.CTDonHang">
+        <MappingFragment StoreEntitySet="CTDonHang">
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="Id_DonHang" ColumnName="Id_DonHang" />
+          <ScalarProperty Name="Id_SanPham" ColumnName="Id_SanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonHangs">
+      <EntityTypeMapping TypeName="WebServiceShopModel.DonHang">
+        <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+          <ScalarProperty Name="Id_KhachHang" ColumnName="Id_KhachHang" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="DiaChiGiao" ColumnName="DiaChiGiao" />
+          <ScalarProperty Name="NguoiNhan" ColumnName="NguoiNhan" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="WebServiceShopModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPhamDeNghis">
+      <EntityTypeMapping TypeName="WebServiceShopModel.SanPhamDeNghi">
+        <MappingFragment StoreEntitySet="SanPhamDeNghi">
+          <ScalarProperty Name="temp" ColumnName="temp" />
+          <ScalarProperty Name="IdSanPhamDN" ColumnName="IdSanPhamDN" />
+          <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPham_Timebase">
+      <EntityTypeMapping TypeName="WebServiceShopModel.SanPham_Timebase">
+        <MappingFragment StoreEntitySet="SanPham_Timebase">
+          <ScalarProperty Name="temp" ColumnName="temp" />
+          <ScalarProperty Name="Id_TimeBase" ColumnName="Id_TimeBase" />
+          <ScalarProperty Name="Id_SanPham" ColumnName="Id_SanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeBases">
+      <EntityTypeMapping TypeName="WebServiceShopModel.TimeBase">
+        <MappingFragment StoreEntitySet="TimeBase">
+          <ScalarProperty Name="Show" ColumnName="Show" />
+          <ScalarProperty Name="GioDen" ColumnName="GioDen" />
+          <ScalarProperty Name="GioTu" ColumnName="GioTu" />
+          <ScalarProperty Name="ThuTrongTuan" ColumnName="ThuTrongTuan" />
+          <ScalarProperty Name="ThoiGianDen" ColumnName="ThoiGianDen" />
+          <ScalarProperty Name="ThoiGianTu" ColumnName="ThoiGianTu" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
